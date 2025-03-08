@@ -1,12 +1,14 @@
 import * as pc from 'playcanvas'
 import { useRef } from 'react'
-// import Model from './Model'
 import { Entity } from '@playcanvas/react'
-import { Camera } from '@playcanvas/react/components'
+import { Camera, Script } from '@playcanvas/react/components'
 import { OrbitControls } from '@playcanvas/react/scripts'
+import PoseEffect from '../scripts/PoseEffect'
+// components
+import Island from './Island'
 import Fruits from './Fruits'
 import Cat from './Cat'
-import Ground from './Ground'
+import Clouds from './Clouds'
 
 function Scene() {
   const boundingBox = useRef(new pc.BoundingBox())
@@ -14,17 +16,16 @@ function Scene() {
 
   return (
     <>
-      {/* <Model /> */}
-
       <Entity position={[0, 10, 10]} ref={cameraEntity}>
-        <Camera clearColor="blue" />
-        <OrbitControls distanceMin={5} distanceMax={1000} distance={20} />
+        <Camera clearColor="#6bd4d1" />
+        <OrbitControls distanceMin={5} distanceMax={30} distance={20} />
+        <Script script={PoseEffect} />
       </Entity>
 
       <Cat ref={{ boundingBox, cameraEntity }} />
-
-      <Ground ref={boundingBox}></Ground>
+      <Island ref={boundingBox} />
       <Fruits />
+      <Clouds />
     </>
   )
 }

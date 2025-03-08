@@ -1,10 +1,12 @@
-import { Entity } from '@playcanvas/react'
-import { Collision, Render, Script } from '@playcanvas/react/components'
-import { useContext, useEffect } from 'react'
+import { Collision, Script } from '@playcanvas/react/components'
+import { useContext, useEffect, useMemo } from 'react'
 import { StateContext } from '../../contexts/StateContext'
 import { FruitCategoryType } from '../../types/scene'
-import { useApp, useMaterial } from '@playcanvas/react/hooks'
+import { useApp } from '@playcanvas/react/hooks'
 import FruitEatScript from '../scripts/FruitEatScript'
+import Model from './components/Model'
+import appleUrl from '@assets/models/apple.glb'
+import orangeUrl from '@assets/models/orange.glb'
 
 const Fruit = ({
   id: fruitId,
@@ -15,31 +17,21 @@ const Fruit = ({
   position: number[]
   type: FruitCategoryType
 }) => {
-  // @ts-expect-error - MaterialProps string is not Color
-  const appleMaterial = useMaterial({ diffuse: 'red' })
-  // @ts-expect-error - MaterialProps string is not Color
-  const orangeMaterial = useMaterial({ diffuse: 'orange' })
+  const url = useMemo(() => {
+    switch (type) {
+      case 'apple':
+        return appleUrl
+      case 'orange':
+        return orangeUrl
+    }
+  }, [type])
 
-  switch (type) {
-    case 'apple':
-      return (
-        <Entity position={position} name={fruitId}>
-          <Render type="sphere" material={appleMaterial} />
-          <Collision type="sphere" radius={1} />
-          <Script script={FruitEatScript} />
-        </Entity>
-      )
-    case 'orange':
-      return (
-        <Entity position={position} name={fruitId}>
-          <Render type="sphere" material={orangeMaterial} />
-          <Collision type="sphere" radius={1} />
-          <Script script={FruitEatScript} />
-        </Entity>
-      )
-    default:
-      return null
-  }
+  return (
+    <Model url={url} position={position} name={fruitId} scale={[0.5, 0.5, 0.5]}>
+      <Collision type="sphere" radius={1} />
+      <Script script={FruitEatScript} />
+    </Model>
+  )
 }
 
 function Fruits() {

@@ -16,7 +16,7 @@ function InteractButtons() {
           z: { min: -scaleZ, max: scaleZ },
         },
         {
-          fixedY: 1,
+          fixedY: 0.4,
         }
       )
 

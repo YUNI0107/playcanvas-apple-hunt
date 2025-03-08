@@ -1,13 +1,17 @@
+import glb from '@assets/models/island.glb'
+import useAsset from '../hooks/useAsset'
+import Model from './components/Model'
 import { Entity } from '@playcanvas/react'
-import { Render } from '@playcanvas/react/components'
 import { useContext, useEffect } from 'react'
 import { StateContext } from '../../contexts/StateContext'
 
-function Ground({
+function Island({
   ref: boundingBox,
 }: {
   ref: React.RefObject<pc.BoundingBox>
 }) {
+  const { data: asset } = useAsset(glb, 'container')
+
   const { groundPosition, groundScale } = useContext(StateContext)
 
   useEffect(() => {
@@ -17,11 +21,20 @@ function Ground({
     }
   }, [groundScale, groundPosition, boundingBox])
 
+  if (!asset) return null
+
   return (
-    <Entity name="ground" scale={groundScale}>
-      <Render type="box" />
-    </Entity>
+    <>
+      <Model
+        name="island"
+        url={glb}
+        scale={[0.1, 0.1, 0.1]}
+        position={[0, 0.25, 0]}
+      />
+
+      <Entity name="ground" scale={groundScale} />
+    </>
   )
 }
 
-export default Ground
+export default Island
