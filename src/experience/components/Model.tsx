@@ -9,6 +9,8 @@ function Model({
   position,
   rotation,
   children,
+  onPointerOver,
+  onPointerOut,
 }: {
   url: string
   name?: string
@@ -16,6 +18,8 @@ function Model({
   position?: number[]
   rotation?: number[]
   children?: React.ReactNode
+  onPointerOver?: () => void
+  onPointerOut?: () => void
 }) {
   const { data: asset } = useAsset(url, 'container')
   if (!asset) return null
@@ -27,7 +31,14 @@ function Model({
 
   return (
     <>
-      <Entity name={name} scale={scale} position={position} rotation={rotation}>
+      <Entity
+        name={name}
+        scale={scale}
+        position={position}
+        rotation={rotation}
+        onPointerOver={onPointerOver}
+        onPointerOut={onPointerOut}
+      >
         <Render type="asset" asset={asset} />
         {children}
       </Entity>

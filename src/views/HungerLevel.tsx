@@ -14,6 +14,9 @@ function HungerLevel() {
             alt="hunger"
             style={{
               opacity: DEFAULT_HUNGER_LEVEL - hungerLevel > index ? 1 : 0.5,
+              ...(!(DEFAULT_HUNGER_LEVEL - hungerLevel > index) && {
+                filter: 'grayscale(80%)',
+              }),
             }}
           />
         </div>

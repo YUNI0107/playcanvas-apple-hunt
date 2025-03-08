@@ -1,5 +1,5 @@
 import { Collision, Script } from '@playcanvas/react/components'
-import { useContext, useEffect, useMemo } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { StateContext } from '../../contexts/StateContext'
 import { FruitCategoryType } from '../../types/scene'
 import { useApp } from '@playcanvas/react/hooks'
@@ -17,6 +17,8 @@ const Fruit = ({
   position: number[]
   type: FruitCategoryType
 }) => {
+  const [scale, setScale] = useState([0.5, 0.5, 0.5])
+
   const url = useMemo(() => {
     switch (type) {
       case 'apple':
@@ -26,8 +28,23 @@ const Fruit = ({
     }
   }, [type])
 
+  const onPointerOver = () => {
+    setScale([0.6, 0.6, 0.6])
+  }
+
+  const onPointerOut = () => {
+    setScale([0.5, 0.5, 0.5])
+  }
+
   return (
-    <Model url={url} position={position} name={fruitId} scale={[0.5, 0.5, 0.5]}>
+    <Model
+      url={url}
+      position={position}
+      name={fruitId}
+      scale={scale}
+      onPointerOver={onPointerOver}
+      onPointerOut={onPointerOut}
+    >
       <Collision type="sphere" radius={1} />
       <Script script={FruitEatScript} />
     </Model>
