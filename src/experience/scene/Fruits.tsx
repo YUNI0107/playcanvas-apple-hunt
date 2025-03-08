@@ -4,7 +4,7 @@ import { StateContext } from '../../contexts/StateContext'
 import { FruitCategoryType } from '../../types/scene'
 import { useApp } from '@playcanvas/react/hooks'
 import FruitEatScript from '../scripts/FruitEatScript'
-import Model from './components/Model'
+import Model from '../components/Model'
 import appleUrl from '@assets/models/apple.glb'
 import orangeUrl from '@assets/models/orange.glb'
 

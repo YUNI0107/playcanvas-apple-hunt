@@ -1,7 +1,8 @@
+import { StateProvider } from './contexts/StateContext.tsx'
 import Experience from './experience/Experience.tsx'
 import InteractButtons from './views/InteractButtons.tsx'
+import HungerLevel from './views/HungerLevel.tsx'
 import './App.css'
-import { StateProvider } from './contexts/StateContext.tsx'
 
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
       <StateProvider>
         <Experience />
 
-        {/* TODO: import css library */}
-        <div style={{ position: 'absolute', top: 0, left: 0, padding: 10 }}>
+        <div className="container">
+          <HungerLevel />
           <InteractButtons />
         </div>
       </StateProvider>

@@ -16,7 +16,7 @@ function Scene() {
 
   return (
     <>
-      <Entity position={[0, 10, 10]} ref={cameraEntity}>
+      <Entity position={[-8, 4.5, 18]} ref={cameraEntity}>
         <Camera clearColor="#6bd4d1" />
         <OrbitControls distanceMin={5} distanceMax={30} distance={20} />
         <Script script={PoseEffect} />

@@ -1,6 +1,85 @@
 #root {
   width: 100vw;
-  height: 100vh; 
+  height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10;
+  width: 100%;
+}
+
+.hunger-level-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  height: 30px;
+}
+
+.hunger-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.hunger-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.interact-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.fruit-button-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.fruit-button {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff 80%, #eeeeee 100%);
+  border: 2px solid #cccccc;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.fruit-button-background {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  top: 10px;
+  left: 0;
+  z-index: 0;
+}
+
+.fruit-button p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #333333;
+}
+
+.fruit-button img {
+  width: 35px;
+  height: 35px;
 }

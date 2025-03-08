@@ -1,6 +1,6 @@
 import { Entity } from '@playcanvas/react'
 import { Render } from '@playcanvas/react/components'
-import useAsset from '../../hooks/useAsset'
+import useAsset from '../hooks/useAsset'
 
 function Model({
   url,

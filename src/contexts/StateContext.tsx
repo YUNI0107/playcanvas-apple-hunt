@@ -3,7 +3,7 @@ import { FruitsType } from '../types/scene'
 
 const DEFAULT_GROUND_SCALE = [10, 0.5, 10]
 const DEFAULT_GROUND_POSITION = [0, 0, 0]
-const DEFAULT_HUNGER_LEVEL = 5
+export const DEFAULT_HUNGER_LEVEL = 5
 
 const StateContext = createContext<{
   fruits: FruitsType[]

@@ -1,6 +1,6 @@
 import glb from '@assets/models/island.glb'
 import useAsset from '../hooks/useAsset'
-import Model from './components/Model'
+import Model from '../components/Model'
 import { Entity } from '@playcanvas/react'
 import { useContext, useEffect } from 'react'
 import { StateContext } from '../../contexts/StateContext'

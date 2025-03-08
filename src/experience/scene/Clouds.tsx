@@ -1,6 +1,6 @@
 import { Entity } from '@playcanvas/react'
 import cloudGlb from '@assets/models/cloud.glb'
-import Model from './components/Model'
+import Model from '../components/Model'
 import { CLOUDS_DATA } from '../../constant/scene'
 import { Script } from '@playcanvas/react/components'
 import FloatingScript from '../scripts/FloatingScript'
