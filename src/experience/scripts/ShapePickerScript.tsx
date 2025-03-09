@@ -7,7 +7,7 @@ class ShapePickerScript extends pc.Script {
   lookAtPosition: pc.Vec3 = new pc.Vec3()
 
   speed = 10
-  positionY = 1
+  positionY = 0
   boundingBoxRef: { current: pc.BoundingBox } | null = null
   cameraEntityRef: { current: pc.Entity } | null = null
 

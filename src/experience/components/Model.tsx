@@ -1,6 +1,7 @@
 import { Entity } from '@playcanvas/react'
-import { Render } from '@playcanvas/react/components'
+import { Anim, Render, Script } from '@playcanvas/react/components'
 import useAsset from '../hooks/useAsset'
+import BindAnimScript from '../scripts/BindAnimScript'
 
 function Model({
   url,
@@ -9,6 +10,7 @@ function Model({
   position,
   rotation,
   children,
+  useAnim = false,
   onPointerOver,
   onPointerOut,
 }: {
@@ -18,6 +20,7 @@ function Model({
   position?: number[]
   rotation?: number[]
   children?: React.ReactNode
+  useAnim?: boolean
   onPointerOver?: () => void
   onPointerOut?: () => void
 }) {
@@ -40,6 +43,12 @@ function Model({
         onPointerOut={onPointerOut}
       >
         <Render type="asset" asset={asset} />
+        {useAnim && (
+          <>
+            <Anim asset={asset} />
+            <Script script={BindAnimScript} asset={asset} />
+          </>
+        )}
         {children}
       </Entity>
     </>

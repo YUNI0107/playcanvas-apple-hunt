@@ -29,7 +29,7 @@ const Fruit = ({
   }, [type])
 
   const onPointerOver = () => {
-    setScale([0.6, 0.6, 0.6])
+    setScale([0.55, 0.55, 0.55])
   }
 
   const onPointerOut = () => {
@@ -61,6 +61,8 @@ function Fruits() {
       setFruits((prevFruits) =>
         prevFruits.filter((fruit) => fruit.id !== fruitId)
       )
+
+      app.fire('cat:eatFruit')
     }
 
     app.on('fruit:eat', eat)

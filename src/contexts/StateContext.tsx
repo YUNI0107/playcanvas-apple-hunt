@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState } from 'react'
 import { FruitsType } from '../types/scene'
 
-const DEFAULT_GROUND_SCALE = [10, 0.5, 10]
+const DEFAULT_GROUND_SCALE = [10, 1, 10]
 const DEFAULT_GROUND_POSITION = [0, 0, 0]
 export const DEFAULT_HUNGER_LEVEL = 5
 
