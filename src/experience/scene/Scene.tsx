@@ -9,6 +9,7 @@ import Island from './Island'
 import Fruits from './Fruits'
 import Cat from './Cat'
 import Clouds from './Clouds'
+import Water from './Water'
 
 function Scene() {
   const boundingBox = useRef(new pc.BoundingBox())
@@ -24,6 +25,7 @@ function Scene() {
 
       <Cat ref={{ boundingBox, cameraEntity }} />
       <Island ref={boundingBox} />
+      <Water />
       <Fruits />
       <Clouds />
     </>

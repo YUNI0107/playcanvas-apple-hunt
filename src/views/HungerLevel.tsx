@@ -1,9 +1,15 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { StateContext, DEFAULT_HUNGER_LEVEL } from '../contexts/StateContext'
 import hungerIcon from '@assets/images/pet-bowl.png'
 
 function HungerLevel() {
-  const { hungerLevel } = useContext(StateContext)
+  const { hungerLevel, setBubbleText } = useContext(StateContext)
+
+  useEffect(() => {
+    if (hungerLevel === 0) {
+      setBubbleText("Thank you for feeding me! I'm full now.")
+    }
+  }, [hungerLevel, setBubbleText])
 
   return (
     <div className="hunger-level-container">
