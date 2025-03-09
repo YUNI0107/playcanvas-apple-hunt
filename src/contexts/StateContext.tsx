@@ -14,6 +14,12 @@ const StateContext = createContext<{
   setGroundPosition: React.Dispatch<React.SetStateAction<number[]>>
   hungerLevel: number
   setHungerLevel: React.Dispatch<React.SetStateAction<number>>
+  bubbleText: string
+  setBubbleText: React.Dispatch<React.SetStateAction<string>>
+  catScreenCoord: { x: number; y: number; z: number }
+  setCatScreenCoord: React.Dispatch<
+    React.SetStateAction<{ x: number; y: number; z: number }>
+  >
 }>({
   fruits: [],
   setFruits: () => {},
@@ -23,6 +29,10 @@ const StateContext = createContext<{
   setGroundPosition: () => {},
   hungerLevel: DEFAULT_HUNGER_LEVEL,
   setHungerLevel: () => {},
+  bubbleText: '',
+  setBubbleText: () => {},
+  catScreenCoord: { x: 0, y: 0, z: 0 },
+  setCatScreenCoord: () => {},
 })
 
 const StateProvider = ({ children }: { children: ReactNode }) => {
@@ -30,6 +40,8 @@ const StateProvider = ({ children }: { children: ReactNode }) => {
   const [groundScale, setGroundScale] = useState(DEFAULT_GROUND_SCALE)
   const [groundPosition, setGroundPosition] = useState(DEFAULT_GROUND_POSITION)
   const [hungerLevel, setHungerLevel] = useState(DEFAULT_HUNGER_LEVEL)
+  const [bubbleText, setBubbleText] = useState('')
+  const [catScreenCoord, setCatScreenCoord] = useState({ x: 0, y: 0, z: 0 })
 
   // interactions
   const [fruits, setFruits] = useState<FruitsType[]>([])
@@ -45,6 +57,10 @@ const StateProvider = ({ children }: { children: ReactNode }) => {
         setFruits,
         hungerLevel,
         setHungerLevel,
+        bubbleText,
+        setBubbleText,
+        catScreenCoord,
+        setCatScreenCoord,
       }}
     >
       {children}

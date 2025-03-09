@@ -5,7 +5,7 @@ class BindAnimScript extends pc.Script {
 
   initialize() {
     const animations = (this.asset?.resource as { animations: Array<pc.Asset> })
-      .animations
+      ?.animations
 
     if (animations) {
       animations.forEach((animation: pc.Asset) => {

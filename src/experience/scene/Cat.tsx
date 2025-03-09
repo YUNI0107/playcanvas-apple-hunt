@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Entity } from '@playcanvas/react'
 import { Collision, RigidBody, Script } from '@playcanvas/react/components'
 import ShapePickerScript from '../scripts/ShapePickerScript'
@@ -6,7 +6,9 @@ import { useApp } from '@playcanvas/react/hooks'
 import * as pc from 'playcanvas'
 import Model from '../components/Model'
 import CatAnimStateScript from '../scripts/CatAnimStateScript'
+import { StateContext } from '../../contexts/StateContext'
 import catGlb from '@assets/models/cat.glb'
+import Shadow from '../components/Shadow'
 
 interface refType {
   boundingBox: React.RefObject<pc.BoundingBox>
@@ -17,6 +19,7 @@ const DEFAULT_CAT_POSITION = [0, 0, 0]
 
 function Cat({ ref }: { ref: refType }) {
   const app = useApp()
+  const { setBubbleText, setCatScreenCoord } = useContext(StateContext)
   const [position, setPosition] = useState(DEFAULT_CAT_POSITION)
   const [eulers, setEulers] = useState([0, 180, 0])
   const [isRunning, setIsRunning] = useState(false)
@@ -64,7 +67,6 @@ function Cat({ ref }: { ref: refType }) {
       const positionVec3 = vec3A.current
       positionVec3.fromArray(position)
 
-      if (positionVec3.equals(hitPositionVec3)) return
       nextPositionVec3.lerp(fromPosition, hitPositionVec3, timer)
       nextPositionVec3.y = 0
 
@@ -81,13 +83,25 @@ function Cat({ ref }: { ref: refType }) {
           setIsRunning(false)
         }
       }
+
+      // worldToScreen
+      const cameraEntity = ref.cameraEntity.current
+      if (cameraEntity && cameraEntity.camera) {
+        positionVec3.y += 3
+        const screenCoord = cameraEntity.camera.worldToScreen(positionVec3)
+        setCatScreenCoord(screenCoord)
+      }
     }
 
     app.on('update', update)
     return () => {
       app.off('update', update)
     }
-  }, [app, position, isRunning])
+  }, [app, position, isRunning, setCatScreenCoord, ref])
+
+  useEffect(() => {
+    setBubbleText("I'm hungry!")
+  }, [setBubbleText])
 
   return (
     <Entity name="cat" position={position} rotation={eulers}>
@@ -99,6 +113,8 @@ function Cat({ ref }: { ref: refType }) {
         useAnim={true}
       >
         <Script script={CatAnimStateScript} />
+
+        <Shadow scale={[0.8, 0.8, 0.8]} />
       </Model>
 
       <Script

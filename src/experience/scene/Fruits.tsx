@@ -7,6 +7,7 @@ import FruitEatScript from '../scripts/FruitEatScript'
 import Model from '../components/Model'
 import appleUrl from '@assets/models/apple.glb'
 import orangeUrl from '@assets/models/orange.glb'
+import Shadow from '../components/Shadow'
 
 const Fruit = ({
   id: fruitId,
@@ -17,6 +18,7 @@ const Fruit = ({
   position: number[]
   type: FruitCategoryType
 }) => {
+  const { setBubbleText } = useContext(StateContext)
   const [scale, setScale] = useState([0.5, 0.5, 0.5])
 
   const url = useMemo(() => {
@@ -30,6 +32,7 @@ const Fruit = ({
 
   const onPointerOver = () => {
     setScale([0.55, 0.55, 0.55])
+    setBubbleText('I want to eat this fruit!')
   }
 
   const onPointerOut = () => {
@@ -47,6 +50,7 @@ const Fruit = ({
     >
       <Collision type="sphere" radius={1} />
       <Script script={FruitEatScript} />
+      <Shadow scale={[2, 2, 2]} />
     </Model>
   )
 }
