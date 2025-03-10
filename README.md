@@ -1,50 +1,16 @@
-# React + TypeScript + Vite
+# PlayCanvas-React & Cat hunt Apple 🍎
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Banner](/public/readme.png)
 
-Currently, two official plugins are available:
+I was super excited when I saw the playcanvas team released playcanvas-react, so I had to try it out since I already have some playcanvas experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### About Game
 
-## Expanding the ESLint configuration
+It's a cat feeding game! You can spawn delicious fruits on an island and guide a cat to eat them. 🐾
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Challenges
 
-- Configure the top-level `parserOptions` property like this:
+- When a react component's state changes, entity position resets to (0,0,0).
+- Instead of `setPosition` in the script's update function, handle position updates inside the React component currently.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+I'm still try to figuring out how to integrate React's state management and event handling with playcanvas-react.
